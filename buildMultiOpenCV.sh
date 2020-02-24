@@ -2,7 +2,7 @@
 # License: MIT. See license file in root directory
 # Copyright(c) JetsonHacks (2017-2018)
 # https://gist.github.com/YashasSamaga/6d37bc403c0934329b078b4bad98c7f2
-# build multi version of opencv and auto switch to it 
+# build multi version of opencv and auto switch to it
 
 OPENCV_VERSION=4.2.0
 # Jetson TX2
@@ -296,6 +296,7 @@ if [ ${OPENCV_VERSION:0:1} = 4 ]; then
   export PKG_CONFIG_PATH=$CMAKE_INSTALL_PREFIX"/lib/pkgconfig"
   export LD_LIBRARY_PATH=$CMAKE_INSTALL_PREFIX"/lib"
   pkg-config --modversion opencv4
+  sudo /bin/bash -c 'echo "/usr/local/opencv/$OPENCV_VERSION/lib/" > /etc/ld.so.conf.d/opencv.conf'
   sudo ldconfig
   sudo rm -f /usr/local/lib/python2.7/dist-packages/cv2
   sudo rm -f /usr/local/lib/python3.6/dist-packages/cv2
@@ -305,6 +306,7 @@ elif [ ${OPENCV_VERSION:0:1} = 3 ]; then
   sudo cp unix-install/opencv.pc $CMAKE_INSTALL_PREFIX"/lib/pkgconfig/"
   export PKG_CONFIG_PATH=$CMAKE_INSTALL_PREFIX"/lib/pkgconfig"
   export LD_LIBRARY_PATH=$CMAKE_INSTALL_PREFIX"/lib"
+  sudo /bin/bash -c 'echo "/usr/local/opencv/$OPENCV_VERSION/lib/" > /etc/ld.so.conf.d/opencv.conf'
   pkg-config --modversion opencv
   sudo ldconfig
   sudo rm -f /usr/local/lib/python2.7/dist-packages/cv2

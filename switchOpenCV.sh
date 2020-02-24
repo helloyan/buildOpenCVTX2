@@ -31,6 +31,7 @@ if [ ${OPENCV_VERSION:0:1} = 4 ]; then
 	sudo cp unix-install/opencv4.pc $CMAKE_INSTALL_PREFIX"/lib/pkgconfig/"
 	export PKG_CONFIG_PATH=$CMAKE_INSTALL_PREFIX"/lib/pkgconfig"
 	export LD_LIBRARY_PATH=$CMAKE_INSTALL_PREFIX"/lib"
+	sudo /bin/bash -c 'echo "/usr/local/opencv/$OPENCV_VERSION/lib/" > /etc/ld.so.conf.d/opencv.conf'
 	pkg-config --modversion opencv4
 	sudo ldconfig
 	sudo rm -f /usr/local/lib/python2.7/dist-packages/cv2
@@ -41,6 +42,7 @@ elif [ ${OPENCV_VERSION:0:1} = 3 ]; then
 	sudo cp unix-install/opencv.pc $CMAKE_INSTALL_PREFIX"/lib/pkgconfig/"
 	export PKG_CONFIG_PATH=$CMAKE_INSTALL_PREFIX"/lib/pkgconfig"
 	export LD_LIBRARY_PATH=$CMAKE_INSTALL_PREFIX"/lib"
+	sudo /bin/bash -c 'echo "/usr/local/opencv/$OPENCV_VERSION/lib/" > /etc/ld.so.conf.d/opencv.conf'
 	pkg-config --modversion opencv
 	sudo ldconfig
 	sudo rm -f /usr/local/lib/python2.7/dist-packages/cv2
