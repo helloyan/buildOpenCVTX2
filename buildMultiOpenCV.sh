@@ -107,7 +107,7 @@ sudo apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 sudo apt-get install -y python2.7-dev python3.6-dev python-dev python-numpy python3-numpy
 sudo apt-get install -y libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libpostproc-dev libtiff5-dev libxvidcore-dev libx264-dev
 sudo apt-get install -y libv4l-dev v4l-utils qv4l2 v4l2ucp
-sudo apt-get install -y qt5-default zlib1g-dev
+sudo apt-get install -y qt5-default zlib1g-dev openssl libssl-dev
 sudo apt-get install -y curl
 
 # https://devtalk.nvidia.com/default/topic/1007290/jetson-tx2/building-opencv-with-opengl-support-/post/5141945/#5141945
