@@ -4,12 +4,12 @@
 # https://gist.github.com/YashasSamaga/6d37bc403c0934329b078b4bad98c7f2
 # build multi version of opencv and auto switch to it
 
-OPENCV_VERSION=4.2.0
+OPENCV_VERSION=4.5.1
 # Jetson TX2
 ARCH_BIN=6.2
 # Jetson TX1
 # ARCH_BIN=5.3
-CMAKE_VERSION=v3.16.2
+CMAKE_VERSION=3.19.2
 INSTALL_DIR=/usr/local/opencv/$OPENCV_VERSION
 # Download the opencv_extras repository
 # If you are installing the opencv testdata, ie
@@ -19,7 +19,7 @@ INSTALL_DIR=/usr/local/opencv/$OPENCV_VERSION
 DOWNLOAD_OPENCV_EXTRAS=YES
 DOWNLOAD_OPENCV_CONTRIB=YES
 # Source code directory
-OPENCV_SOURCE_DIR=$HOME
+OPENCV_SOURCE_DIR=$HOME/ai
 WHEREAMI=$PWD
 
 CLEANUP=true
@@ -142,7 +142,7 @@ fi
 
 if [ "$INSTALL_CMAKE" = true ]; then
   cd $OPENCV_SOURCE_DIR
-  wget https://git.codingcafe.org/Mirrors/Kitware/CMake/-/archive/$CMAKE_VERSION/CMake-$CMAKE_VERSION.tar.gz
+  wget https://hub.fastgit.org/Kitware/CMake/archive/v$CMAKE_VERSION.tar.gz -O CMake-$CMAKE_VERSION.tar.gz
   tar zxf CMake-$CMAKE_VERSION.tar.gz
   cd CMake-$CMAKE_VERSION
   ./bootstrap
@@ -152,7 +152,7 @@ fi
 
 cd $OPENCV_SOURCE_DIR
 if [ ! -f "opencv-$OPENCV_VERSION.tar.gz" ]; then
-  wget https://git.codingcafe.org/Mirrors/opencv/opencv/-/archive/$OPENCV_VERSION/opencv-$OPENCV_VERSION.tar.gz
+  wget https://hub.fastgit.org/opencv/opencv/archive/$OPENCV_VERSION.tar.gz -O opencv-$OPENCV_VERSION.tar.gz
 fi
 tar zxf opencv-$OPENCV_VERSION.tar.gz
 OPENCV_DIR=opencv-$OPENCV_VERSION
@@ -162,7 +162,7 @@ if [ $DOWNLOAD_OPENCV_EXTRAS == "YES" ]; then
   # This is for the test data
   cd $OPENCV_SOURCE_DIR"/"$OPENCV_DIR
   if [ ! -f "opencv_extra-$OPENCV_VERSION.tar.gz" ]; then
-    wget https://git.codingcafe.org/Mirrors/opencv/opencv_extra/-/archive/$OPENCV_VERSION/opencv_extra-$OPENCV_VERSION.tar.gz
+    wget https://hub.fastgit.org/opencv/opencv_extra/archive/$OPENCV_VERSION.tar.gz -O opencv_extra-$OPENCV_VERSION.tar.gz
   fi
   tar zxf opencv_extra-$OPENCV_VERSION.tar.gz
 fi
@@ -172,7 +172,7 @@ if [ $DOWNLOAD_OPENCV_CONTRIB == "YES" ]; then
   # This is for the test data
   cd $OPENCV_SOURCE_DIR"/"$OPENCV_DIR
   if [ ! -f "opencv_contrib-$OPENCV_VERSION.tar.gz" ]; then
-    wget https://git.codingcafe.org/Mirrors/opencv/opencv_contrib/-/archive/$OPENCV_VERSION/opencv_contrib-$OPENCV_VERSION.tar.gz
+    wget https://hub.fastgit.org/opencv/opencv_contrib/archive/$OPENCV_VERSION.tar.gz -O opencv_contrib-$OPENCV_VERSION.tar.gz
   fi
   tar zxf opencv_contrib-$OPENCV_VERSION.tar.gz
 fi

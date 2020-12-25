@@ -127,7 +127,7 @@ if [ -f /etc/nv_tegra_release ]; then
             JETSON_JETPACK="UNKNOWN"
             ;;
         esac
-    elif [ "$JETSON_BOARD" ="TK1" ]; then
+    elif [ "$JETSON_BOARD" = "TK1" ]; then
         case $JETSON_L4T in
         "21.5")
             JETSON_JETPACK="2.3.1 or 2.3"
