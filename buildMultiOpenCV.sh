@@ -66,8 +66,9 @@ source scripts/jetson_variables.sh
 
 # Print out the current configuration
 echo -e "\033[40;31mNOTICE : Only work under bash \033[0m"
-echo -e "\033[40;31mNOTICE : 国内用户请恢复官方源，加速源不含arm64 \033[0m"
+echo -e "\033[40;31mNOTICE : 国内用户请使用华为源 \033[0m"
 echo -e "\033[40;31mNOTICE : 同时需确保可以访问raw.githubusercontent.com，网络搜索github加速 \033[0m"
+echo -e "\033[40;31mNOTICE : 如果编译出错一般是无法访问github下载文件导致，到opencv_3rdparty下载好相关文件覆盖 \033[0m"
 echo "Build configuration: "
 echo " NVIDIA Jetson $JETSON_BOARD"
 echo " Operating System: $JETSON_L4T_STRING [Jetpack $JETSON_JETPACK]"
@@ -147,7 +148,7 @@ if [ "$INSTALL_CMAKE" = true ]; then
   cd CMake-$CMAKE_VERSION
   ./bootstrap
   make
-  make install
+  sudo make install
 fi
 
 cd $OPENCV_SOURCE_DIR
@@ -211,6 +212,7 @@ time cmake -D CMAKE_BUILD_TYPE=RELEASE \
   -D OPENCV_DNN_CUDA=ON \
   -D BUILD_opencv_python2=ON \
   -D BUILD_opencv_python3=ON \
+  # -D BUILD_opencv_xfeatures2d=OFF \
   -D BUILD_TESTS=OFF \
   -D BUILD_PERF_TESTS=OFF \
   -D WITH_TBB=ON \
